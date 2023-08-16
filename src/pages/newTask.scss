@@ -1,0 +1,38 @@
+$primary-color: #242F9B;
+$font-color-default: #555555;
+$error-color: #ff3333;
+$primary-button-width: 80px;
+$primary-button-height: 40px;
+$common-width: 300px;
+
+.new-task {
+  width: 1000px;
+  margin: 0 auto;
+
+  &-form {
+    color: $font-color-default;
+  }
+
+  &-select-list,
+  &-title,
+  &-detail {
+    width: $common-width;
+    margin-bottom: 25px;
+  }
+
+  &-detail {
+    height: 200px;
+  }
+
+  &-button {
+    background-color: $primary-color;
+    color: #ffffff;
+    width: $primary-button-width;
+    height: $primary-button-height;
+    border-radius: 5px;
+  }
+}
+
+.error-message {
+  color: $error-color;
+}

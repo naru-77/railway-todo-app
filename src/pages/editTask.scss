@@ -1,0 +1,39 @@
+$font-color-default: #555555;
+$font-color-error: #ff3333;
+$button-color-error: #ff3333;
+$button-color-primary: #242F9B;
+
+.edit-task {
+  width: 1000px;
+  margin: 0 auto;
+
+  &-form {
+    color: $font-color-default;
+  }
+
+  &-title, &-detail {
+    width: 300px;
+    margin-bottom: 25px;
+  }
+
+  &-button {
+    width: 80px;
+    height: 40px;
+    border-radius: 5px;
+
+    &.delete {
+      color: $button-color-error;
+      border: solid 1px $button-color-error;
+      margin: 25px 5px;
+    }
+
+    &.edit {
+      background-color: $button-color-primary;
+      color: #ffffff;
+    }
+  }
+
+  .error-message {
+    color: $font-color-error;
+  }
+}

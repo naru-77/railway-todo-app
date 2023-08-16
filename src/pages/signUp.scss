@@ -1,0 +1,37 @@
+$font-color-default: #555555;
+$error-color: #ff3333;
+$primary-color: #242F9B;
+$input-height: 30px;
+$primary-button-width: 100px;
+$primary-button-height: 40px;
+
+.signup {
+  width: 500px;
+  margin: 0 auto;
+
+  &-form {
+    margin: 25px 0;
+    color: $font-color-default;
+  }
+
+  &-button {
+    background-color: $primary-color;
+    color: #ffffff;
+    width: $primary-button-width;
+    height: $primary-button-height;
+    border-radius: 5px;
+  }
+
+  .email-input,
+  .name-input,
+  .password-input {
+    width: 100%;
+    font-size: large;
+    height: $input-height;
+    margin-bottom: 25px;
+  }
+}
+
+.error-message {
+  color: $error-color;
+}
