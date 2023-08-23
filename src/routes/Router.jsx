@@ -1,16 +1,16 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import { Home } from "../pages/Home";
-import { NotFound } from "../pages/NotFound";
-import { SignIn } from "../pages/SignIn";
-import { NewTask } from "../pages/NewTask";
-import { NewList } from "../pages/NewList";
-import { EditTask } from "../pages/EditTask";
-import { SignUp } from "../pages/SignUp";
-import { EditList } from "../pages/EditList";
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { Home } from '../pages/Home';
+import { NotFound } from '../pages/NotFound';
+import { SignIn } from '../pages/SignIn';
+import { NewTask } from '../pages/NewTask';
+import { NewList } from '../pages/NewList';
+import { EditTask } from '../pages/EditTask';
+import { SignUp } from '../pages/SignUp';
+import { EditList } from '../pages/EditList';
 
-export const AppRouter = () => {
+export function AppRouter() {
   const auth = useSelector((state) => state.auth.isSignIn);
 
   return (
