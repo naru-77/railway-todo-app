@@ -55,6 +55,11 @@ $background-color-light: #f5f5f5;
       padding-left: 25px;
       font-size: large;
       border: solid 1px #ffffff;
+      margin-top: 100px;
+
+      .task-limit, .task-limit-duration {
+        background-color: $background-color-light;
+      }
 
       &-link {
         display: block;

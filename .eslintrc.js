@@ -19,4 +19,7 @@ module.exports = {
     'jsx-a11y/label-has-associated-control': 'off',
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
   },
+  settings: {
+    react: { version: 'detect' },
+  },
 };

@@ -5,6 +5,9 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { url } from '../const';
 import { Header } from '../components/Header';
 import './editTask.scss';
+import { format } from 'date-fns';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 export function EditTask() {
   const navigate = useNavigate();
@@ -17,13 +20,22 @@ export function EditTask() {
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleDetailChange = (e) => setDetail(e.target.value);
   const handleIsDoneChange = (e) => setIsDone(e.target.value === 'done');
+  const [limit, setLimit] = useState(null); // 期限の状態を追加
+  // const handleLimitChange = (date) => {
+  //   const formattedDate = format(date, "yyyy-MM-dd"); // 日付のフォーマットを変更
+  //   setLimit(formattedDate); // 期限変更
+  // };
   const onUpdateTask = () => {
     console.log(isDone);
     const data = {
       title,
       detail,
       done: isDone,
+      limit, // 期限の状態を追加
     };
+
+    console.log('Sending PUT request with data:', data);
+    console.log('Using token:', cookies.token);
 
     axios
       .put(`${url}/lists/${listId}/tasks/${taskId}`, data, {
@@ -36,6 +48,7 @@ export function EditTask() {
         navigate('/');
       })
       .catch((err) => {
+        console.log(err.response.data);
         setErrorMessage(`更新に失敗しました。${err}`);
       });
   };
@@ -67,6 +80,8 @@ export function EditTask() {
         setTitle(task.title);
         setDetail(task.detail);
         setIsDone(task.done);
+        const formattedDate = format(new Date(task.limit), 'yyyy-MM-dd'); // 日付のフォーマットを変更
+        setLimit(formattedDate);
       })
       .catch((err) => {
         setErrorMessage(`タスク情報の取得に失敗しました。${err}`);
@@ -118,6 +133,17 @@ export function EditTask() {
             />
             完了
           </div>
+          <label>期限</label>
+          <br />
+          <DatePicker
+            selected={limit ? new Date(limit) : null} // 期限の状態を追加
+            onChange={(date) => setLimit(date)} // 期限変更
+            timeInputLabel="Time:"
+            dateFormat="yyyy/MM/dd hh:mm:ss" // 日付のフォーマットを変更
+            className="edit-task-limit" // クラス名を追加
+            showTimeInput // 時間の入力欄を表示
+          />
+          <br />
           <button type="button" className="delete-task-button" onClick={onDeleteTask}>
             削除
           </button>

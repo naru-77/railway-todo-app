@@ -18,6 +18,9 @@ export function EditList() {
       title,
     };
 
+    console.log('Sending PUT request with data:', data);
+    console.log('Using token:', cookies.token);
+
     axios
       .put(`${url}/lists/${listId}`, data, {
         headers: {
@@ -28,7 +31,7 @@ export function EditList() {
         navigate('/');
       })
       .catch((err) => {
-        setErrorMessage(`更新に失敗しました。 ${err}`);
+        setErrorMessage(`更新に失敗しました。${err.response ? err.response.data : err}`);
       });
   };
 
