@@ -17,6 +17,8 @@ export function Home() {
 
   const handleIsDoneDisplayChange = (e) => setIsDoneDisplay(e.target.value);
 
+  const [focusedListIndex, setFocusedListIndex] = useState(0);
+
   useEffect(() => {
     axios
       .get(`${url}/lists`, {
@@ -67,6 +69,24 @@ export function Home() {
       });
   };
 
+  useEffect(() => {
+    if (lists.length > 0 && typeof selectListId === 'undefined') {
+      setSelectListId(lists[0].id);
+    }
+  }, [lists]);
+
+  const handleListKeyDown = (e) => {
+    if (e.key === "ArrowRight") {
+      const newIndex = (focusedListIndex + 1) % lists.length;
+      setFocusedListIndex(newIndex);
+      handleSelectList(lists[newIndex].id);
+    } else if (e.key === "ArrowLeft") {
+      const newIndex = (focusedListIndex - 1 + lists.length) % lists.length;
+      setFocusedListIndex(newIndex);
+      handleSelectList(lists[newIndex].id);
+    }
+  };
+
   return (
     <div>
       <Header />
@@ -84,7 +104,7 @@ export function Home() {
               </p>
             </div>
           </div>
-          <ul className="list-tab">
+          <ul className="list-tab" role="tablist">
             {lists.map((list, key) => {
               const isActive = list.id === selectListId;
               return (
@@ -92,7 +112,10 @@ export function Home() {
                   key={key}
                   className={`list-tab-item ${isActive ? 'active' : ''}`}
                   onClick={() => handleSelectList(list.id)}
-                  role="presentation"
+                  onKeyDown={handleListKeyDown}
+                  role="tab"
+                  tabIndex={0}
+                  aria-selected={isActive}
                 >
                   {list.title}
                 </li>
